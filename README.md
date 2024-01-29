@@ -1,6 +1,6 @@
 # QPE_search
 
-Right now some early drafts for detection algorithm and curves generation can be found here.
+We are trying to develop simple yet effective algorithm for blind search of QPE objects in Chandra data. Right now some early drafts for detection algorithm and curves generation, which will be used to finetune the algorithm, can be found here.
 
 ## Curve generation
 
@@ -53,7 +53,7 @@ Early version of detection algorithm can be found in [`detection.py`](detection.
 
 2. Signal should contain at least one peak with prominence = signal mean * prominence (argument of the ```check_curve``` function)
 
-What is prominence can be seen ["here"](https://en.wikipedia.org/wiki/Topographic_prominence).
+What is prominence can be seen [here](https://en.wikipedia.org/wiki/Topographic_prominence).
 
 Example of usage:
 
