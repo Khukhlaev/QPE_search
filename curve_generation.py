@@ -61,7 +61,10 @@ class LightCurveGenerator:
             start = int(qpe_params["start"] / self.dt)
             end = start + int(width / self.dt)
 
-            signal[start:end] = self._generate_qpe(width, height, qpe_params["mode"])
+            # Mode is quadratic by default
+            mode = "quadratic" if qpe_params.get("mode", None) is None else qpe_params.get("mode")
+
+            signal[start:end] = self._generate_qpe(width, height, mode)
 
         return noise + signal, times
 

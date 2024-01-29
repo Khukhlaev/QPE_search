@@ -19,7 +19,8 @@ def calculate_widths(counts: np.ndarray, peaks: np.ndarray) -> np.ndarray:
     return scipy.signal.peak_widths(counts, peaks, rel_height=0.9)[0]
 
 
-def check_curve(counts: np.ndarray, dt: np.ndarray, errors: np.ndarray) -> bool:
+def check_curve(counts: np.ndarray, dt: np.ndarray, errors: np.ndarray, max_val: float = 2.5,
+                prominence: float = 2.5) -> bool:
     """
     Function to check if curve could correspond to QPE candidate in 3 steps:
     1. Check that max value of timeseries is >n times greater than the background (default n = 3)
@@ -32,10 +33,10 @@ def check_curve(counts: np.ndarray, dt: np.ndarray, errors: np.ndarray) -> bool:
     assert counts.shape[0] == dt.shape[0]
     assert dt.shape[0] == errors.shape[0]
 
-    if not check_max_val(counts):
+    if not check_max_val(counts, max_val):
         return False
 
-    peaks = find_top_points(counts)
+    peaks = find_top_points(counts, prominence)
 
     if not peaks.size:
         return False
